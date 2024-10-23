@@ -10,6 +10,8 @@ import Target from '../components/Target';
 import ReactLogo from '../components/ReactLogo';
 import Cube from '../components/Cube';
 import Rings from '../components/Rings';
+import HeroCamera from '../components/HeroCamera';
+import Button from '../components/Button';
 
 const Hero = () => {
   // const x = useControls('HaxRoom', {
@@ -69,22 +71,24 @@ const Hero = () => {
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-            <HaxRoom 
-              // scale={0.05} 
-              // scale={[x.scale, x.scale, x.scale]}
-              // scale={[0.1, 0.1, 0.1]}
-              // scale={0.1}
-              // scale={isMobile ? 0.07 : isTablet ? 0.1 : 0.1}
-              scale={sizes.deskScale}
-              // position={[0, 0, 0]} 
-              // position={[x.positionX, x.positionY, x.positionZ]} 
-              // position={[1.1, -8.7, -2.1]}
-              position={sizes.deskPosition}  
-              // rotation={[0, -Math.PI/2, 0]} 
-              // rotation={[x.rotationX, x.rotationY, x.rotationZ]}  
-              // rotation={[0.2, -3.6, 0]}
-              rotation={[0.2, -Math.PI, 0]}
-            />
+            <HeroCamera isMobile={isMobile}>
+              <HaxRoom 
+                // scale={0.05} 
+                // scale={[x.scale, x.scale, x.scale]}
+                // scale={[0.1, 0.1, 0.1]}
+                // scale={0.1}
+                // scale={isMobile ? 0.07 : isTablet ? 0.1 : 0.1}
+                scale={sizes.deskScale}
+                // position={[0, 0, 0]} 
+                // position={[x.positionX, x.positionY, x.positionZ]} 
+                // position={[1.1, -8.7, -2.1]}
+                position={sizes.deskPosition}  
+                // rotation={[0, -Math.PI/2, 0]} 
+                // rotation={[x.rotationX, x.rotationY, x.rotationZ]}  
+                // rotation={[0.2, -3.6, 0]}
+                rotation={[0.2, -Math.PI, 0]}
+              />
+            </HeroCamera>
             <group>
               <Target position={sizes.targetPosition} />
               <ReactLogo position={sizes.reactLogoPosition} />
@@ -95,6 +99,11 @@ const Hero = () => {
             <directionalLight position={[10,10,10]} intensity={0.5} />
           </Suspense>
         </Canvas>
+      </div>
+      <div className='absolute bottom-7 left-0 right-0 w-full z-10 c-space'>
+        <a href="#contact" className='w-fit'>
+          <Button name="Let's work together" isBeam containerClass='sm:w-fit w-full sm:min-w-96'/>
+        </a>
       </div>
     </section>
   )
